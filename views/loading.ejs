@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>United</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/loading.css">
+</head>
+<body>
+    <div id="bg"></div>
+    <input type="hidden" id="hdfNext" value="<%=next%>">
+    <label>
+        <input type="checkbox">
+        <span class="btn"></span>
+        <i class="fa fa-power-off"></i>
+    </label>
+    <h1>Manchester United</h1>
+    <script>
+        var checkbox = document.querySelector("input[type=checkbox]");
+        var next = document.querySelector("#hdfNext").value;
+        var h1 = document.querySelector('h1');
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                checkbox.click();
+            }, 0.5 * 1000);
+            setTimeout(() => {
+                location.href = next;
+            }, 2.5 * 1000);
+        });
+        checkbox.addEventListener('change', function() {
+            if(this.checked) {
+                h1.style.opacity = 1;
+                h1.style.color = '#f00';
+                h1.style.fontWeight = 900;
+                h1.style.fontSize = '4em';
+            } else {
+                h1.style.opacity = 0;
+                h1.style.color = '#000';
+            }
+        });
+    </script>
+</body>
+</html>

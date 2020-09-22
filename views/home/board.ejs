@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>United</title>
+    <link rel="stylesheet" href="/css/home/board.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="box">
+            <h2 class="name">United</h2>
+            <a href="/redirect?returnURL=my-united" class="info">Go!</a>
+            <div class="circle"></div>
+            <img src="/imgs/logo.png" class="product">
+        </div>
+        <div class="box">
+            <h2 class="name">First Team</h2>
+            <a href="#" class="info">Go!</a>
+            <div class="circle"></div>
+            <img src="/imgs/firstteam.png" class="product">
+        </div>
+        <div class="box">
+            <h2 class="name">Titles</h2>
+            <a href="#" class="info">Go!</a>
+            <div class="circle"></div>
+            <img src="/imgs/titles.png" class="product">
+        </div>
+    </div>
+    <script src="/js/vanilla-tilt.min.js"></script>
+    <script>
+        VanillaTilt.init(document.querySelectorAll(".box"), {
+            max: 25,
+            speed: 400
+        });
+    </script>
+</body>
+
+</html>

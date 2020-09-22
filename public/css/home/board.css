@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #131313;
+}
+.container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 1200px;
+    transform-style: preserve-3d;
+}
+.container .box {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    margin: 40px;
+    background-color: #232323;
+    border-radius: 20px;
+    transform-style: preserve-3d;
+}
+.container .box:before {
+    content: 'MAN';
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    right: 10px;
+    font-size: 4.5em;
+    font-weight: 900;
+    color: #fff;
+    font-style: italic;
+    opacity: 0;
+    transition: 0.5s;
+}
+.container .box:after {
+    content: 'UNITED';
+    position: absolute;
+    bottom: 20px;
+    left: 10px;
+    right: 10px;
+    font-size: 4.5em;
+    font-weight: 900;
+    color: #fff;
+    font-style: italic;
+    opacity: 0;
+    transition: 0.5s;
+}
+.container .box:hover:after,
+.container .box:hover:before {
+    opacity: 0.04;
+}
+.container .box  .name {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    transform-style: preserve-3d;
+    transform: translate3d(0,0,75px);
+    transition: 0.5s;
+    z-index: 10;
+    opacity: 0;
+}
+.container .box:hover .name {
+    transform: translate3d(0, 0, 125px);
+    top: 40px;
+    opacity: 1;
+}
+.container .box .info {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform-style: preserve-3d;
+    transform: translate3d(-50%, 0, 75px);
+    color: #fff;
+    background-color: #333;
+    padding: 10px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: 0.5s;
+    opacity: 0;
+    z-index: 10;
+    transition-delay: 0.2s;
+}
+.container .box:hover .info {
+    transform: translate3d(-50%, 0, 125px);
+    bottom: 40px;
+    opacity: 1;
+}
+.container .box .circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    transform-style: preserve-3d;
+    transition: 0.5s;
+    transform: translate3d(-50%, -50%, 50px);
+    background: #fff;
+    z-index: 10;
+    opacity: 1;
+}
+.container .box .product {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    max-width: 300px;
+    transition: 0.5s;
+    z-index: 11;
+    transform-style: preserve-3d;
+    transform: translate3d(-50%, -50%, 50px);
+}
+.container .box:hover .product { 
+    transform: translate3d(-50%, -50%, 100px);
+}
+.container .box:nth-child(1) .circle,
+.container .box:nth-child(1) .info {
+    background: #379bf7;
+}
+.container .box:nth-child(2) .circle,
+.container .box:nth-child(2) .info {
+    background: #fb4b4f;
+}
+.container .box:nth-child(3) .circle,
+.container .box:nth-child(3) .info {
+    background: #9dbc28;
+}
