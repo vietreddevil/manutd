@@ -1,20 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
+VanillaTilt_init();
+var scrollHandler = document.getElementById('scrollHandler');
+function checkPageLoading() {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        scrollHandler.value = 0;
+        loadMore();
+    }
+}
+async function loadMore() {    
+    scrollHandler.value = await loadContent();
+}
+function loadContent() {
+    return new Promise(async (resolve, reject) => {
+        var lis = document.querySelectorAll('.timeline ul li');
+        let cur_index = lis.length;
+        if(cur_index == Timeline.length) {
+            resolve(0);
+        } else {
+            let info = Timeline[lis.length];
+            let strHTML = "<li>";
+            strHTML += '<div class="additional_imgs">';
+            for await (let item of info.additional_images) {
+                strHTML += '<div class="card">';
+                strHTML += '<div class="box">';
+                strHTML += '<div class="imgBx">';
+                strHTML += '<img src="' + item.imgUrl + '">';
+                strHTML += '</div>';
+                strHTML += '<div class="contentBx"><div>';
+                strHTML += '<h2>' + item.title + '</h2>';
+                strHTML += '<p>' + item.content + '</p>';
+                strHTML += '</div></div>';
+                strHTML += '</div>';
+                strHTML += '</div>';
+            }
+            strHTML += '</div>';
+            strHTML += '<div class="content">';
+            strHTML += ' <h3>' + info.title + '</h3>';
+            strHTML += ' <section>' + info.html;
+            strHTML += ' </section>';
+            strHTML += ' </div>';
+            strHTML += ' <div class="time">';
+            strHTML += '  <h4>' + info.time + '</h4>';
+            strHTML += ' </div>';
+            strHTML += '</li>';
+            $('.timeline ul li:last').after(strHTML);
+            VanillaTilt_init();
+            resolve(0);
+        }
+    });
+}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Epic History</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/United/history.css">
-    <link rel="stylesheet" href="/css/United/history-text-around.css">
-</head>
-
-<body>
-    <h1>Manchester United: chiều dài lịch sử</h1>
-    <div class="timeline">
-        <ul>
-            <li>
+/**
+ * 
+ * <li>
                 <div class="additional_imgs">
                     <div class="card">
                         <div class="box">
@@ -151,91 +188,7 @@
                     </section>
                 </div>
                 <div class="time">
-                    <h4>1878 - 1909</h4>
+                    <h4>1878 to 1909</h4>
                 </div>
             </li>
-
-            <li>
-                <div class="additional_imgs">
-                    <div class="card">
-                        <div class="box">
-                            <div class="imgBx">
-                                <img src="/imgs/History/1920-1929/Joe.jpg">
-                            </div>
-                            <div class="contentBx">
-                                <div>
-                                    <h2>Joe Spence</h2>
-                                    <p>Một trong số ít những ngôi sao thực thụ của Manchester United giữa các cuộc chiến. Với lối chơi chạy cánh siêu hạng của Joe, bài hát "Give it to joe"
-                                        đã được ngân vang trên khán đài của Old Trafford trong suốt 14 năm liền. Biệt danh của ông ấy là "Mr. Soccer".
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="content">
-                    <h3>Bóng đá trở lại</h3>
-                    <section>
-                        <div class="circle circle1">
-                            <img src="/imgs/History/1920-1929/1920-1929.jpg">
-                        </div>
-                        <div>
-                            <p>
-                                Manchester United trở lại với Football League vào ngày 30 tháng 8 năm 1919 sau 4 năm tạm hoãn do chiến tranh. Có rất nhiều cái tên mới trong đội 
-                                        hình góp mặt tại trận đấu mở màn mùa giải với Derby County. Thực tế, chỉ có duy nhất 2 cái tên trong số đó đã từng chơi cho United trước khi giải 
-                                        đấu bị chiến tranh làm cho đóng băng.
-                            </p>
-                            <p>
-                                Billy Meredith vẫn còn ở đó, nhưng những gì tốt đẹp mà ông đã trình diễn trước đó đã không thể tái hiện. Ông chỉ xuất hiện 19 lần trong chiến dịch 
-                                1919/20 và cùng United đứng ở vị trí thứ 12 trên bảng xếp hạng. Tuy nhiên, không phải là không có điểm sáng cho đội bóng khi ngay lập tức họ tìm được 
-                                người hùng mới, Joe Spence, người đứng đầu danh sách ghi bàn của MU mùa đó với 14 bàn thắng. Mùa giải sau đó, Joe Spence tiếp tục là chân sút hàng đầu của đội, 
-                                nhưng MU tiếp tục gây thất vọng khi chỉ xếp ở vị trí thứ 13.
-                            </p> 
-                            <p>
-                                Sau những năm tháng không mấy tốt đẹp, John Robson rời câu lạc bộ và người được bổ nhiệm thay thế là John Chapman, người sau đó đã nắm giữ cả 2 vai trò
-                                thư ký và quản lý đội bóng. Trong khi đó, người cũ Ernest Mangnall tiếp tục gây chú ý tại City khi họ chuyển đến sân đấu mới có tên là Maine Road. Ông cũng 
-                                quyết định tái hợp với học trò cũ khi chiêu mộ Meredith về với City. Có lẽ không phải ngẫu nhiên khi mà United đã phải xuống hạng ngay trong mùa giải đầu 
-                                tiên không có Meredith khi chỉ thắng 8 trên tổng số 42 trận đấu vào mùa 1921/1922. Đội bóng của Chapman đã phải chơi ở giải hạng nhì 3 mùa giải, trước khi đội 
-                                trưởng Frank Barson dẫn dắt các đồng đội thăng hạng sau mùa giải 1924/1925. Mùa đó United chỉ thua 8 trận và chỉ đứng sau Leicester City.
-                            </p>
-                            <div class="circle circle2">
-                                <img src="/imgs/History/1920-1929/team-1929.png">
-                            </div>
-                            <p>
-                                Mùa giải 1925/1926, United kết thúc ở vị trí thứ 9 và đi tới bán kết cúp FA khi phải chịu thất bại trước City. Mặc dù cuối mùa giải đó khi mà City không thể
-                                vô địch FA cup cũng như phải chịu xuống chơi tại giải hạng nhì, người hâm mộ Manchester United cũng không thể vui được vì chỉ 2 tháng sau khi mùa giải 1926/1927 
-                                bắt đầu, Chapman bị FA đình chỉ với lí do không được tiết lộ. Cầu thủ chạy cánh Clarence Hilditch khi đó miễn cưỡng trở thành cầu thủ kiêm quản lý đội bóng cho đến 
-                                khi người kế vị Chapman là Herbert Bamlett được bổ nhiệm vào nửa sau của mùa giải. Ông được biết đến với tư cách là trọng tài trong trận United gặp Burnley tại 
-                                FA cup năm 1909. Khi ông là người đã hoãn trận đấu vì báo tuyết tại thời điểm mà Burnley đang dẫn trước 1-0. Và ở trận đá lại, sự xuất sắc của Charlie Roberts
-                                đã giúp United chiến thắng và vô địch FA năm đó.   
-                            </p>
-                            <p>
-                                Đáng buồn là đó là điều tích cực duy nhất mà Bamlett đem lại cho đội bóng. Với Bamlett là huấn luyện viên, United liên tục đạt được những kết quả đáng buồn tại giải
-                                hạng nhất khi chỉ đứng lần lượt thứ 15, 18 và 12 trong 3 mùa giải liên tiếp. Spence tiếp tục đóng vai người gánh đội bất thành khi mà đội bóng thi đấu quá thiếu ổn 
-                                định.
-                            </p>
-                        </div>
-                    </section>
-                </div>
-                <div class="time">
-                    <h4>1878 - 1909</h4>
-                </div>
-            </li>
-            <div style="clear: both;"></div>
-        </ul>
-    </div>
-    <div id="bottomOfPage">
-        <h1 style="color: #fff;">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</h1>
-    </div>
-    <div id="scrollToTop" onclick="goToTop();">
-        <i class="fa fa-arrow-circle-up"></i>
-    </div>
-    <input type="hidden" id="scrollHandler" value="1">
-    <script src="/js/vanilla-tilt.min.js"></script>
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/common.js"></script>
-    <script src="/js/info__History.js"></script>
-    <script src="/js/History.js"></script>
-</body>
-
-</html>
+ */
